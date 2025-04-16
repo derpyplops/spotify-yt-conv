@@ -52,3 +52,8 @@ https://open.spotify.com/playlist/3rhmVUKcG2...
    - Show progress as it converts each track
    - Display a summary of the conversion results
    - Provide the URL of the newly created YouTube Music playlist
+
+
+## Acknowledgements
+
+Linh, this is for you.
