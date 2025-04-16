@@ -1,33 +1,38 @@
 # Spotify to YouTube Music Playlist Converter
 
-This script allows you to convert your Spotify playlists to YouTube Music playlists.
+A Python tool that converts Spotify playlists to YouTube Music playlists. This tool allows you to easily transfer your favorite playlists between these two music streaming platforms.
 
-## Setup
+## Prerequisites
 
-1. Install the required dependencies:
+- Python 3.x
+- UV package manager
+- Spotify Developer Account
+- YouTube Music account
+- Browser authentication file for YouTube Music (`browser.json`)
+
+## Installation
+
+1. Clone this repository:
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/yourusername/spotify-yt-conv.git
+cd spotify-yt-conv
 ```
 
-2. Set up Spotify API credentials:
-   - Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
-   - Create a new application
-   - Get your Client ID and Client Secret
-   - Add a redirect URI (e.g., http://localhost:8888/callback)
-   - Create a `.env` file with the following content:
-   ```
-   SPOTIFY_CLIENT_ID=your_client_id
-   SPOTIFY_CLIENT_SECRET=your_client_secret
-   SPOTIFY_REDIRECT_URI=your_redirect_uri
-   ```
+2. Install dependencies using UV:
+```bash
+uv sync
+```
 
-3. Set up YouTube Music authentication:
-   - Run the following command in your terminal:
-   ```bash
-   python -c "from ytmusicapi import YTMusic; YTMusic.setup(filepath='oauth.json')"
-   ```
-   - Follow the instructions to complete the authentication process
-   - This will create an `oauth.json` file in your current directory
+3. Create a `.env` file in the project root with your Spotify API credentials:
+```env
+SPOTIFY_CLIENT_ID=your_client_id
+SPOTIFY_CLIENT_SECRET=your_client_secret
+SPOTIFY_REDIRECT_URI=your_redirect_uri
+```
+
+4. Set up YouTube Music authentication:
+   - Follow the [ytmusicapi documentation](https://ytmusicapi.readthedocs.io/en/latest/setup.html) to create your `browser.json` file
+   - Place the `browser.json` file in the project root directory
 
 ## Usage
 
@@ -36,14 +41,14 @@ pip install -r requirements.txt
 python spotify_to_ytmusic.py
 ```
 
-2. When prompted, enter the Spotify playlist URL you want to convert
-   - The URL should look like: `https://open.spotify.com/playlist/37i9dQZF1DX5KpP2LN299J`
+2. When prompted, enter the Spotify playlist URL you want to convert. The URL should look like:
+```
+https://open.spotify.com/playlist/3rhmVUKcG2...
+```
 
-3. The script will create a new private playlist in your YouTube Music account and add all the matching songs it finds
-
-## Notes
-
-- The script creates the YouTube Music playlist as private by default
-- Some songs might not be found on YouTube Music due to different naming or availability
-- The script handles pagination for Spotify playlists of any size
-- Error handling is implemented to prevent crashes due to API issues or missing tracks 
+3. The script will:
+   - Create a new YouTube Music playlist
+   - Convert all tracks from the Spotify playlist
+   - Show progress as it converts each track
+   - Display a summary of the conversion results
+   - Provide the URL of the newly created YouTube Music playlist
